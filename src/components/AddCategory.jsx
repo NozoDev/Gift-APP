@@ -1,12 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-const AddCategory = () => {
+const AddCategory = ({ onNewCategory }) => {
+  const [inputValue, setInputValue] = useState("");
 
-    const [inputValue, setInputValue] = useState('')
+  const onInputChange = ({ target }) => {
+    setInputValue(target.value);
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (inputValue.trim().length <= 1) return;
+
+    // setCategories((categories) => [inputValue, ...categories]);
+    setInputValue("");
+    onNewCategory(inputValue.trim());
+  };
 
   return (
-  <input type="text" placeholder='Buscar Gifts' value={inputValue} />
-  )
-}
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
+        placeholder="Buscar Gifts"
+        value={inputValue}
+        onChange={onInputChange}
+      />
+    </form>
+  );
+};
 
-export default AddCategory
+export default AddCategory;
