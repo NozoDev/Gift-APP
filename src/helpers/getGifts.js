@@ -7,10 +7,10 @@ const getGifts = async (category) => {
   const gifts = data.map((img) => ({
     id: img.id,
     title: img.title,
-    url: img.images.downsized_medium,
+    url: img.images.downsized_medium.url,
   }));
 
-  console.log(gifts);
+
   return gifts;
 };
 
